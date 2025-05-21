@@ -6,7 +6,7 @@ plugins {
     id "ca.cutterslade.analyze" version "2.0.0"
 }
 
-defaultTasks 'clean', 'analyzeDependencies', 'test', 'aggregate'
+defaultTasks 'clean', 'test', 'aggregate'
 
 compileJava.options.encoding = 'UTF-8'
 
