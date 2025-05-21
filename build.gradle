@@ -1,0 +1,54 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id "net.serenity-bdd.serenity-gradle-plugin" version "4.2.26"
+    id "nebula.lint" version "20.5.8"
+    id "ca.cutterslade.analyze" version "2.0.0"
+}
+
+defaultTasks 'clean', 'analyzeDependencies', 'test', 'aggregate'
+
+compileJava.options.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    serenity_version = '4.2.26'
+    junit_platform_launcher_version="1.11.4"
+    cucumber_junit_platform_engine_version="7.20.1"
+    junit_platform_suite_version="1.11.4"
+    logback_classic_version= '1.5.13'
+    assertj_core_version="3.23.1"
+}
+
+dependencies {
+    testImplementation "net.serenity-bdd:serenity-core:${serenity_version}"
+    testImplementation "net.serenity-bdd:serenity-cucumber:${serenity_version}"
+    testImplementation "net.serenity-bdd:serenity-screenplay:${serenity_version}"
+    testImplementation "net.serenity-bdd:serenity-screenplay-webdriver:${serenity_version}"
+    testImplementation "net.serenity-bdd:serenity-ensure:${serenity_version}"
+    testImplementation "net.serenity-bdd:serenity-junit5:${serenity_version}"
+    testImplementation "org.junit.platform:junit-platform-launcher:${junit_platform_launcher_version}"
+    testImplementation "io.cucumber:cucumber-junit-platform-engine:${cucumber_junit_platform_engine_version}"
+    testImplementation "org.junit.platform:junit-platform-suite:${junit_platform_suite_version}"
+    testImplementation "ch.qos.logback:logback-classic:${logback_classic_version}"
+    testImplementation "org.assertj:assertj-core:${assertj_core_version}"
+}
+
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+tasks.test {
+    useJUnitPlatform()
+    systemProperty("cucumber.junit-platform.naming-strategy", "long")
+    maxParallelForks = 8
+}
+serenity {
+    reports = ["single-page-html"]
+}
+gradle.startParameter.continueOnFailure = true
+
+test.finalizedBy(aggregate, reports)
