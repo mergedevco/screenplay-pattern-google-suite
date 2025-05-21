@@ -1,4 +1,4 @@
-package co.mergedev.googlesuite;
+package co.mergedev.googlesuite.testsuites;
 
 import org.junit.platform.suite.api.ConfigurationParameter;
 import org.junit.platform.suite.api.IncludeEngines;
