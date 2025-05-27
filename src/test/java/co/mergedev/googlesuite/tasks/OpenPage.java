@@ -1,17 +1,21 @@
 package co.mergedev.googlesuite.tasks;
 
-import co.mergedev.googlesuite.userinterfaces.GoogleTranslateUserInterface;
 import net.serenitybdd.core.steps.Instrumented;
+import net.serenitybdd.model.environment.EnvironmentSpecificConfiguration;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Open;
+import net.thucydides.model.util.EnvironmentVariables;
 
 public class OpenPage implements Task {
 
+    private EnvironmentVariables envVars;
+
     @Override
     public <T extends Actor> void performAs(T actor) {
+        String baseUrl =  EnvironmentSpecificConfiguration.from(envVars).getConfig("serenity").getString("home.page");
         actor.attemptsTo(
-                Open.browserOn().the(GoogleTranslateUserInterface.class)
+                Open.url(baseUrl)
         );
     }
 

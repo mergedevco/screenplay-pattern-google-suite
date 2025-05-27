@@ -9,6 +9,7 @@ import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actions.Hit;
 import org.openqa.selenium.Keys;
 
+
 public class Translate implements Task {
 
     private final String text;
@@ -27,8 +28,11 @@ public class Translate implements Task {
         actor.attemptsTo(
                 Enter.theValue(text).into(GoogleTranslateUserInterface.INPUT_SOURCE_TEXT),
                 Click.on(GoogleTranslateUserInterface.BUTTON_SOURCE_LANGUAGE),
-                Enter.theValue(sourceLanguage).into(GoogleTranslateUserInterface.INPUT_SOURCE_LANGUAGE),
-                Hit.the(Keys.ENTER).into(GoogleTranslateUserInterface.INPUT_SOURCE_LANGUAGE)
+                Enter.theValue(sourceLanguage).into(GoogleTranslateUserInterface.INPUT_SEARCH_SOURCE_LANGUAGE),
+                Hit.the(Keys.ENTER).into(GoogleTranslateUserInterface.INPUT_SEARCH_SOURCE_LANGUAGE),
+                Click.on(GoogleTranslateUserInterface.BUTTON_RESULT_LANGUAGE),
+                Enter.theValue(finalLanguage).into(GoogleTranslateUserInterface.INPUT_SEARCH_RESULT_LANGUAGE),
+                Hit.the(Keys.ENTER).into(GoogleTranslateUserInterface.INPUT_SEARCH_RESULT_LANGUAGE)
         );
     }
 
