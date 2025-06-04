@@ -9,7 +9,7 @@ import static io.cucumber.core.options.Constants.*;
 
 @Suite
 @IncludeEngines("cucumber")
-@SelectClasspathResource("/features/")
+@SelectClasspathResource("features")
 @ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "io.cucumber.core.plugin.SerenityReporterParallel,pretty,timeline:build/test-results/timeline")
 @ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "co.mergedev.googlesuite.stepdefinitions")
 @ConfigurationParameter(key = SNIPPET_TYPE_PROPERTY_NAME, value = "camelcase")

@@ -21,7 +21,7 @@ public class ResultText implements Question<String> {
     @Override
     public String answeredBy(Actor actor) {
         actor.attemptsTo(
-                WaitUntil.the(GoogleTranslateUserInterface.INPUT_RESULT_TEXT.of(resultText), isVisible()).forNoMoreThan(Duration.ofMinutes(1))
+                WaitUntil.the(GoogleTranslateUserInterface.INPUT_RESULT_TEXT.of(resultText), isVisible()).forNoMoreThan(Duration.ofSeconds(5))
         );
         return Text.of(GoogleTranslateUserInterface.INPUT_RESULT_TEXT.of(resultText)).answeredBy(actor);
     }

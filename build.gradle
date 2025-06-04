@@ -35,6 +35,7 @@ dependencies {
     testImplementation "org.junit.platform:junit-platform-suite:${junit_platform_suite_version}"
     testImplementation "ch.qos.logback:logback-classic:${logback_classic_version}"
     testImplementation "org.assertj:assertj-core:${assertj_core_version}"
+    testImplementation 'junit:junit:4.13.2'
 }
 
 
